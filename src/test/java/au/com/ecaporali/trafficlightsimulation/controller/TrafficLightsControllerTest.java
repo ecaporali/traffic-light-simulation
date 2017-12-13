@@ -29,41 +29,36 @@ public class TrafficLightsControllerTest {
     private SimulationConfig config;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         when(config.observableConfig()).thenReturn(observable);
         trafficLightsController = new TrafficLightsController(config);
     }
 
     @Test
-    public void shouldCallUpdateOnlyForGreenLightOnce() throws Exception {
+    public void shouldCallUpdateOnlyForGreenLightOnce() {
         int timeToRun = 300;
         trafficLightsController.simulate(timeToRun);
-        LightType[] green = {LightType.GREEN};
-        verify(observable, times(1)).notifyAllObservers(eq(green));
+        verify(observable, times(1)).notifyAllObservers(eq(LightType.GREEN));
     }
 
     @Test
-    public void shouldCallUpdateForAllLightsOnce() throws Exception {
+    public void shouldCallUpdateForAllLightsOnce() {
         int timeToRun = 300;
         trafficLightsController.simulate(timeToRun);
-        LightType[] green = {LightType.GREEN};
-        LightType[] yellowAndRed = {LightType.YELLOW, LightType.RED};
-        verify(observable, times(1)).notifyAllObservers(eq(green));
-        verify(observable, times(1)).notifyAllObservers(eq(yellowAndRed));
+        verify(observable, times(1)).notifyAllObservers(eq(LightType.GREEN));
+        verify(observable, times(1)).notifyAllObservers(eq(LightType.YELLOW), eq(LightType.RED));
     }
 
     @Test
-    public void shouldCallUpdateForAllLightsSixTimes() throws Exception {
+    public void shouldCallUpdateForAllLightsSixTimes() {
         int timeToRun = 1800;
         trafficLightsController.simulate(timeToRun);
-        LightType[] green = {LightType.GREEN};
-        LightType[] yellowAndRed = {LightType.YELLOW, LightType.RED};
-        verify(observable, times(6)).notifyAllObservers(eq(green));
-        verify(observable, times(6)).notifyAllObservers(eq(yellowAndRed));
+        verify(observable, times(6)).notifyAllObservers(eq(LightType.GREEN));
+        verify(observable, times(6)).notifyAllObservers(eq(LightType.YELLOW), eq(LightType.RED));
     }
 
     @Test
-    public void shouldNotCallUpdateWhenTimeToRunIsZero() throws Exception {
+    public void shouldNotCallUpdateWhenTimeToRunIsZero() {
         int timeToRun = 0;
         trafficLightsController.simulate(timeToRun);
         verify(observable, times(0)).notifyAllObservers(any());

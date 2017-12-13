@@ -24,7 +24,7 @@ public class SimulationConfigTest {
     private SimulationConfig simulationConfig;
 
     @Test
-    public void shouldAddDefaultNumbersOfObserversOnInit() throws Exception {
+    public void shouldAddDefaultNumbersOfObserversOnInit() {
         simulationConfig = new SimulationConfig();
         TrafficLightsObservable observable = simulationConfig.observableConfig();
         assertThat(observable, notNullValue());
@@ -32,7 +32,7 @@ public class SimulationConfigTest {
     }
 
     @Test
-    public void shouldAddCustomNumbersOfObserversOnInit() throws Exception {
+    public void shouldAddCustomNumbersOfObserversOnInit() {
         List<TrafficLights> trafficLights = new ArrayList<>();
         trafficLights.add(new TrafficLights(LightType.GREEN, Location.NORTH, Location.WEST));
         trafficLights.add(new TrafficLights(LightType.YELLOW, Location.WEST, Location.EAST));

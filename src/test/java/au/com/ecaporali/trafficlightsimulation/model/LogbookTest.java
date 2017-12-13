@@ -22,29 +22,29 @@ public class LogbookTest {
     private Logbook logbook;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         logbook = new Logbook(Location.NORTH);
     }
 
     @Test
-    public void shouldReturnLocationPrintedName() throws Exception {
+    public void shouldReturnLocationPrintedName() {
         assertThat(logbook.locationToDisplay(), equalTo("N"));
     }
 
     @Test
-    public void shouldAddLights() throws Exception {
+    public void shouldAddLights() {
         logbook.add(LightType.GREEN);
         logbook.add(LightType.RED);
         assertThat(logbook.revealContent().size(), is(2));
     }
 
     @Test(expected = AssertionError.class)
-    public void shouldThrowExceptionWhenLocationIsNull() throws Exception {
+    public void shouldThrowExceptionWhenLocationIsNull() {
         logbook = new Logbook(null);
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void shouldThrowExceptionWhenRevealContentListIsModified() throws Exception {
+    public void shouldThrowExceptionWhenRevealContentListIsModified() {
         logbook.add(LightType.GREEN);
         logbook.add(LightType.RED);
         List<LightType> contents = logbook.revealContent();

@@ -31,19 +31,19 @@ public class TrafficLightsTest {
     private Logbook logbook;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         trafficLights = new TrafficLights(singletonList(trafficLight), singletonList(logbook));
     }
 
     @Test
-    public void shouldCallUpdateMethodForAllTrafficLights() throws Exception {
+    public void shouldCallUpdateMethodForAllTrafficLights() {
         LightType[] types = {LightType.GREEN};
         trafficLights.update(null, types);
         verify(trafficLight).updateCurrentLight(types);
     }
 
     @Test
-    public void shouldReturnListOfWellFormattedStringsWhenColorAtLocationsIsCalled() throws Exception {
+    public void shouldReturnListOfWellFormattedStringsWhenColorAtLocationsIsCalled() {
         when(logbook.revealContent()).thenReturn(Arrays.asList(LightType.GREEN, LightType.YELLOW, LightType.RED));
         when(logbook.locationToDisplay()).thenReturn("N");
 
@@ -54,22 +54,22 @@ public class TrafficLightsTest {
     }
 
     @Test(expected = AssertionError.class)
-    public void shouldThrowExceptionWhenLocationIsNullOnInit() throws Exception {
+    public void shouldThrowExceptionWhenLocationIsNullOnInit() {
         new TrafficLights(LightType.GREEN);
     }
 
     @Test(expected = AssertionError.class)
-    public void shouldThrowExceptionWhenLocationIsEmptyOnInit() throws Exception {
+    public void shouldThrowExceptionWhenLocationIsEmptyOnInit() {
         new TrafficLights(LightType.GREEN);
     }
 
     @Test(expected = AssertionError.class)
-    public void shouldThrowExceptionWhenTrafficLightsIsNullOnInit() throws Exception {
+    public void shouldThrowExceptionWhenTrafficLightsIsNullOnInit() {
         new TrafficLights(null, singletonList(logbook));
     }
 
     @Test(expected = AssertionError.class)
-    public void shouldThrowExceptionWhenLogbooksIsNullOnInit() throws Exception {
+    public void shouldThrowExceptionWhenLogbooksIsNullOnInit() {
         new TrafficLights(singletonList(trafficLight), null);
     }
 }

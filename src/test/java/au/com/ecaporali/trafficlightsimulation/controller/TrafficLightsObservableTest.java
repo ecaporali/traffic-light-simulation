@@ -40,7 +40,7 @@ public class TrafficLightsObservableTest {
     }
 
     @Test
-    public void shouldUpdateObserversWhenNotifyAllObserversIsCalled() throws Exception {
+    public void shouldUpdateObserversWhenNotifyAllObserversIsCalled() {
         LightType[] lightTypes = {LightType.GREEN};
         observable.notifyAllObservers(lightTypes);
         verify(trafficLightsA, times(1)).update(observable, lightTypes);
@@ -48,7 +48,7 @@ public class TrafficLightsObservableTest {
     }
 
     @Test
-    public void shouldShowAllLogsWhenBothOutputSizesAreEqual() throws Exception {
+    public void shouldShowAllLogsWhenBothOutputSizesAreEqual() {
         String[] outputA = new String[]{"(A, B): Green", "(A, B): Red"};
         String[] outputB = new String[]{"(E, W): Red", "(E, W): green"};
         when(trafficLightsA.colorAtLocations()).thenReturn(Arrays.asList(outputA));
@@ -60,7 +60,7 @@ public class TrafficLightsObservableTest {
     }
 
     @Test
-    public void shouldNotShowAllLogsWhenOutputSizesAreDifferent() throws Exception {
+    public void shouldNotShowAllLogsWhenOutputSizesAreDifferent() {
         String[] outputA = new String[]{"(A, B): Green", "(A, B): Red"};
         String[] outputB = new String[]{"(E, W): Red"};
         when(trafficLightsA.colorAtLocations()).thenReturn(Arrays.asList(outputA));
@@ -73,12 +73,12 @@ public class TrafficLightsObservableTest {
     }
 
     @Test(expected = AssertionError.class)
-    public void shouldThrowExceptionWhenTrafficLightsListIsNull() throws Exception {
+    public void shouldThrowExceptionWhenTrafficLightsListIsNull() {
         new TrafficLightsObservable(null);
     }
 
     @Test(expected = AssertionError.class)
-    public void shouldThrowExceptionWhenTrafficLightsListSizeIsLessThanTwoElements() throws Exception {
+    public void shouldThrowExceptionWhenTrafficLightsListSizeIsLessThanTwoElements() {
         List<TrafficLights> trafficLights = Collections.singletonList(trafficLightsA);
         new TrafficLightsObservable(trafficLights);
     }

@@ -37,14 +37,10 @@ public class TrafficLight {
     }
 
     public void updateCurrentLight(LightType... lightTypes) {
-        LightType lightType = Arrays.stream(lightTypes)
+        Arrays.stream(lightTypes)
                 .filter(type -> this.currentLightType.equals(type))
-                .findFirst()
-                .orElse(null);
+                .findFirst().ifPresent(this::nextLight);
 
-        if (lightType != null) {
-            this.nextLight(lightType);
-        }
         this.logbook.add(this.currentLightType);
     }
 

@@ -50,17 +50,17 @@ public class TrafficLightTest {
     }
 
     @Test(expected = AssertionError.class)
-    public void shouldThrowExceptionWhenDefaultLightTypeIsNull() throws Exception {
+    public void shouldThrowExceptionWhenDefaultLightTypeIsNull() {
         new TrafficLight(null, Location.NORTH, logbook);
     }
 
     @Test(expected = AssertionError.class)
-    public void shouldThrowExceptionWhenLocationIsNull() throws Exception {
+    public void shouldThrowExceptionWhenLocationIsNull() {
         new TrafficLight(LightType.GREEN, null, logbook);
     }
 
     @Test(expected = AssertionError.class)
-    public void shouldThrowExceptionWhenLogbookIsNull() throws Exception {
+    public void shouldThrowExceptionWhenLogbookIsNull() {
         new TrafficLight(LightType.GREEN, Location.NORTH, null);
     }
 
